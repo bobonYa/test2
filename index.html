@@ -14,33 +14,27 @@
 </head>
 <body>
 <div data-role="page" class="jqm-demos jqm-home">
-<a href="#popupBasic" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-transition="pop">CLick me</a>
-<div data-role="popup" id="popupBasic">
-<p>i love my girl</p>
-</div>
 
-<div id="map-canvas"><!-- Тут будет карта -->
-</div>
+<div id="console1"></div>
+
+<button class="ui-btn" onclick="getjq('Play')">Play</button>
+<button class="ui-btn" onclick="getjq('Stop')">Stop</button>
+
+
+
 <!--http://xn--90aa0bcb7h.xn--p1ai/TEST/script.php -->
 <script>
 // (1)
-var xhr = new XMLHttpRequest();
 
 
-// (2) запрос на другой домен :)
-xhr.open('GET', 'http://xn--90aa0bcb7h.xn--p1ai/TEST/script.php', true);
 
-// (3)
-xhr.onload = function() {
-  alert(this.responseText);
+function getjq(actions)
+{
+	$.get("http://192.168.0.139",{ action: actions}, function(data){
+    //alert("Data Loaded: " + data);
+    $('#console1').html(data);
+});
 }
-
-xhr.onerror = function() {
-  alert('Ошибка ' + this.status);
-}
-
-xhr.send('');
-
 </script>
 	
 </div><!-- /page -->
