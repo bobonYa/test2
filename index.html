@@ -8,31 +8,49 @@
 	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.5.min.css">
 	
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-	<script src="js/jquery.js"></script>
+	<script src="js/jquery-1.11.2.js"></script>
 
 	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+	<style>
+	#console1
+	{
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		border: 1px solid black;
+
+	}
+	</style>
 </head>
-<body>
+<body >
 <div data-role="page" class="jqm-demos jqm-home">
 
 <div id="console1"></div>
-
+<!--
 <button class="ui-btn" onclick="getjq('Play')">Play</button>
 <button class="ui-btn" onclick="getjq('Stop')">Stop</button>
-
+-->
 
 
 <!--http://xn--90aa0bcb7h.xn--p1ai/TEST/script.php -->
 <script>
 // (1)
+var tempcolor=new Array('32CD32','9ACD32','ADFF2F','FFFF00','CD5C5C','FF0000')
 
-
+setInterval(getjq,1000);
 
 function getjq(actions)
 {
-	$.get("http://192.168.0.139",{ action: actions}, function(data){
+	$.get("http://192.168.0.67:8888/mactmp",{ action: actions}, function(data){
     //alert("Data Loaded: " + data);
     $('#console1').html(data);
+    console.log(Math.floor(ur=data/1000));
+    ur=Math.floor(data/1000);
+    
+    $('#console1').css("background-color",'#'+tempcolor[ur-1]);
+  
+
 });
 }
 </script>
